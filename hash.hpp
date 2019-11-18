@@ -28,7 +28,7 @@ public:
 
     // hash function to map values to key
     unsigned int hashFunction(int key);
-
+//edit
     void printTable();
 
     node* searchItem(int key);
