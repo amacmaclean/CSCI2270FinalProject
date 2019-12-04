@@ -14,23 +14,14 @@ struct node
 
 class HashTable
 {
-    int tableSize;  // No. of buckets (linked lists)
-
-    // Pointer to an array containing buckets
+    int tableSize;
     node* *table;
-
     node* createNode(int key, node* next);
 public:
-    HashTable(int bsize);  // Constructor
-
-    // inserts a key into hash table
+    HashTable(int bsize);
     bool insertItem(int key);
-
-    // hash function to map values to key
     unsigned int hashFunction(int key);
-//edit
     void printTable();
-
     node* searchItem(int key);
 };
 
