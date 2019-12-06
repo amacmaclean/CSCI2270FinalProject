@@ -24,8 +24,11 @@ class HashTable
 {
 private:
     int TABLE_SIZE = 10009;
-    node* *table;
-    node* createNode(int key, node* next);
+    LLnode* *table;
+    LLnode* createNode(int key, node* next);
+    LLnode* head; //pointer to head of linked list
+    BSTnode* root; //pointer to root of BST
+
 public:
     HashTable(int bsize);
     bool insertItem(int key);
@@ -37,6 +40,7 @@ public:
     void searchLL(int key);
     void insertLL(int key);
     void deleteLL(int key);
+    BSTnode();
     void insertBST(int key);
     void insertBST(int key);
     void deleteBST(int key);

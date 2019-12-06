@@ -99,9 +99,15 @@ void HashTable::deleteLL(int key){
     
 }
 
+HashTable::BSTnode() {
+    BSTnode *head = new BSTnode;
+    head = NULL;
+}
+
 void HashTable::insertBST(int key){
     int hashIndex = hashFunction(key);
     node* element = table[hashIndex];
+
     
 }
     
