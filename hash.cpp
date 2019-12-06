@@ -111,7 +111,7 @@ void HashTable::searchLL(int key){
         while (element != NULL)
         {
             if (element->key == key)// if the element is not found {
-                found == true;
+                found = true;
             cout << "Element has been found at " << key << ":" << element << endl;
         }
         if (!found) {
