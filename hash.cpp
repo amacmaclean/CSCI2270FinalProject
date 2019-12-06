@@ -84,7 +84,7 @@ void HashTable::insertLL(int key){
     LLnode* element = table[hashIndex];
     //if there is nothing in the linked list
     if (element == NULL) {
-        element = createLLLLnode(key, NULL);
+        element = createLLnode(key, NULL);
     }
     //if there is something in the list then we add to the  next index.
     else{
