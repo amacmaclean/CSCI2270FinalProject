@@ -27,8 +27,8 @@ public:
     int linearMod(int value);
     int quadMod(int value);
     void searchLL(int key);
-    void insertLL(int key)
-    void deleteLL(int key)
+    void insertLL(int key);
+    void deleteLL(int key);
 };
 
 #endif
