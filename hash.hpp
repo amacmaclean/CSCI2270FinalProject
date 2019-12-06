@@ -25,8 +25,8 @@ class HashTable
 {
 private:
     int TABLE_SIZE = 10009;
-    int hashTable[100];
-    LLnode* *table;
+    int* valueArray; //from csv
+    LLnode* *table; //hash Table
     LLnode* createNode(int key, node* next);
     LLnode* head; //pointer to head of linked list
     BSTnode* root; //pointer to root of BST

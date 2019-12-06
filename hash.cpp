@@ -15,12 +15,13 @@ LLnode* HashTable::createLLnode(int key, LLnode* next)
     return nw;
 }
 
-HashTable::HashTable(int bsize)
+HashTable::HashTable()
 {
-    this->TABLE_SIZE= bsize;
+    valueArray = new int[100]; //100 random values inputed from csv
     table = new LLnode*[TABLE_SIZE];
-    for(int i=0;i<bsize;i++)
-        table[i] = nullptr;
+    for(int i=0; i<TABLE_SIZE; i++) {
+        table[i] = NULL;
+    }
 }
 
 
@@ -37,7 +38,6 @@ int HashTable::hashFunction2(int value)
     int temp = floor(value/TABLE_SIZE);
     hashvalue = (temp%TABLE_SIZE);
     return hashvalue;
-    
 }
 
 void HashTable::printTable()
