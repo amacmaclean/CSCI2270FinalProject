@@ -3,6 +3,7 @@
 #include "hash.hpp"
 #include<math.h>
 #include<stdio.h>
+#include<ctime>
 
 using namespace std;
 
@@ -95,5 +96,6 @@ int HashTable::quadMod(int value)
     return hashvalue;
     
 }
+
 
 
