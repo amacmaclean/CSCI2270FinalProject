@@ -1,13 +1,32 @@
 //
 //  ChainingBST.hpp
 //  
-//
-//  Created by Andrew Maclean on 12/2/19.
-//
 
-#ifndef ChainingBST_hpp
-#define ChainingBST_hpp
+#include<math.h>
+#include<stdio.h>
+#include<ctime>
+#include <iostream>
 
-#include <stdio.h>
+struct BSTnode {
+	int num;
+	int count;
+	BSTnode* left;
+	BSTnode* right;
+};
 
-#endif /* ChainingBST_hpp */
+class HashTable {
+private:
+	int TABLE_SIZE;
+	BSTnode* root; //pointer to root of BST
+	int performHash1(int key);
+	int performHash2(int key);
+	BSTnode* searchTable(int key); //returns BST node if found
+	BSTnode* table[]; //double pointer
+public:
+	HashTable(int size);
+	void hash(int key);
+	bool inTable(int key); //return whether it is in table
+	void deleteNode(int key);
+};
+
+

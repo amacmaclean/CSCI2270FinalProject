@@ -16,7 +16,7 @@ private:
 	int performHash1(int key);
 	int performHash2(int key);
 public:
-	HashTable();
+	HashTable(int size);
 	int hash(int key);
 	void printTable();
 	int linearProbe(int key);
