@@ -33,10 +33,8 @@ private:
 
 public:
     HashTable(int bsize);
-    bool insertItem(int key);
-    unsigned int hashFunction(int key);
+    int hashFunction(int key);
     void printTable();
-    node* searchItem(int key);
     int linearMod(int value);
     int quadMod(int value);
     void searchLL(int key);
@@ -46,6 +44,7 @@ public:
     void insertBST(int key);
     void insertBST(int key);
     void deleteBST(int key);
+    LLnode* search(int key);
 };
 
 #endif
