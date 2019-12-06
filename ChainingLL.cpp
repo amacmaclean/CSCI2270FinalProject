@@ -1,12 +1,30 @@
-//
-//  ChainingLL.cpp
-//  
-//
-//  Created by Andrew Maclean on 12/2/19.
-//
 
 #include "ChainingLL.hpp"
+#include<iostream>
+#include<math.h>
+#include<stdio.h>
+#include<ctime>
 
+using namespace std;
+
+LLnode* HashTable::createLLnode(int key, LLnode* next)
+{
+    LLnode* nw = new LLnode;
+    nw->key = key;
+    nw->next = next;
+    return nw;
+}
+
+HashTable::HashTable()
+{
+    valueArray = new int[100]; //100 random values inputed from csv
+    table = new LLnode*[TABLE_SIZE];
+    for(int i=0; i<TABLE_SIZE; i++) {
+        table[i] = NULL;
+    }
+}
+
+HashTable::~HashTable(){}
 
 LLnode* HashTable::search(int key){
      int hashIndex = hashFunction(key);
@@ -18,27 +36,20 @@ LLnode* HashTable::search(int key){
     return element;
 }
 
-void HashTable::searchLL(int key){
-    //first we find where index is in the list
+void HashTable::insertLL(int key){
+    bool found = searchLL(key);
     
+    if (found == FALSE) {
+        <#statements#>
+    }
+}
 
+void HashTable::deleteLL(int key){
     int hashIndex = hashFunction(key);
-    bool found = false;
-    // we use that index in order to initialize our element
     LLnode* element = table[hashIndex];
     
-    // if the element itself is there
-    if (element != NULL)
-    {
-        //to keep recursive properties
-        while (element != NULL)
-        {
-            if (element->key == key)// if the element is not found {
-                found = true;
-            cout << "Element has been found at " << key << ":" << element << endl;
-        }
-        if (!found) {
-            cout << "Element not found" << endl;
-        }
+    while (element != NULL) {
+        <#statements#>
     }
+    
 }
