@@ -97,5 +97,21 @@ int HashTable::quadMod(int value)
     
 }
 
+int main() {
+    
+    //Sample Code Given
+    int startTime, endTime;
+    double execTime;
+    startTime = clock();
+    /*
+    EVALUATION CODE GOES HERE
+    */
+    endTime = clock();
+    execTime = (double)(endTime-startTime)/CLOCKS_PER_SEC;
+    cout << "execution time: " << execTime << endl;
+    return 0;
+}
+
+
 
 
