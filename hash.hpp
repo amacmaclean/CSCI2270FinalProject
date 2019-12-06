@@ -15,7 +15,7 @@ struct node
 
 class HashTable
 {
-    int TABLE_SIZE = 10009;
+    const int TABLE_SIZE = 10009;
     node* *table;
     node* createNode(int key, node* next);
 public:
