@@ -33,6 +33,7 @@ void HashTable::printTable()
 {
     for (int i = 0; i < TABLE_SIZE; i++) {
         cout << i <<"|| ";
+        //TODO if needed
     }
  }
 
