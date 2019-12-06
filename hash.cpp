@@ -7,9 +7,9 @@
 
 using namespace std;
 
-node* HashTable::createNode(int key, node* next)
+LLnode* HashTable::createLLnode(int key, LLnode* next)
 {
-    node* nw = new node;
+    LLnode* nw = new LLnode;
     nw->key = key;
     nw->next = next;
     return nw;
@@ -18,7 +18,7 @@ node* HashTable::createNode(int key, node* next)
 HashTable::HashTable(int bsize)
 {
     this->TABLE_SIZE= bsize;
-    table = new node*[TABLE_SIZE];
+    table = new LLnode*[TABLE_SIZE];
     for(int i=0;i<bsize;i++)
         table[i] = nullptr;
 }
@@ -59,7 +59,7 @@ void HashTable::searchLL(int key){
     int hashIndex = hashFunction(key);
     bool found = false;
     // we use that index in order to initialize our element
-    node* element = table[hashIndex];
+    LLnode* element = table[hashIndex];
     
     // if the element itself is there
     if (element != NULL)
@@ -79,16 +79,16 @@ void HashTable::searchLL(int key){
 
 void HashTable::insertLL(int key){
     int hashIndex = hashFunction(key);
-    node* element = table[hashIndex];
+    LLnode* element = table[hashIndex];
     //if there is nothing in the linked list
     if (element == NULL) {
-        element = createNode(key, NULL);
+        element = createLLLLnode(key, NULL);
     }
     //if there is something in the list then we add to the  next index.
     else{
         while (element != NULL) {
             element = element->next;
-            element= createNode(key, NULL);
+            element= createLLnode(key, NULL);
         }
     }
 }
