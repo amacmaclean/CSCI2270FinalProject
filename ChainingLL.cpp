@@ -6,15 +6,15 @@
 #include<ctime>
 
 using namespace std;
-
-LLnode* HashTable::createLLnode(int key, LLnode* next)
+//function to create node
+LLnode* HashTable::createLLnode(int key)
 {
     LLnode* nw = new LLnode;
     nw->key = key;
-    nw->next = next;
+    nw->next = NULL;
     return nw;
 }
-
+//constructor
 HashTable::HashTable()
 {
     valueArray = new int[100]; //100 random values inputed from csv
@@ -23,9 +23,12 @@ HashTable::HashTable()
         table[i] = NULL;
     }
 }
-
-HashTable::~HashTable(){}
-
+//hash fucntion
+int HashTable::hashFunction(int key)
+{
+    return (key % TABLE_SIZE);
+}
+//search function
 LLnode* HashTable::search(int key){
      int hashIndex = hashFunction(key);
     LLnode* element = table[hashIndex];
@@ -35,15 +38,16 @@ LLnode* HashTable::search(int key){
     
     return element;
 }
-
+//insert function
 void HashTable::insertLL(int key){
     bool found = searchLL(key);
-    
-    if (found == FALSE) {
-        <#statements#>
+    if (found == false) {
+        LLnode* node = createLLnode(key);
+        node->prev = NULL;
+        int hashIndex = hashFunction(key);
     }
 }
-
+//delete function
 void HashTable::deleteLL(int key){
     int hashIndex = hashFunction(key);
     LLnode* element = table[hashIndex];
@@ -51,5 +55,15 @@ void HashTable::deleteLL(int key){
     while (element != NULL) {
         <#statements#>
     }
-    
 }
+//traverse function
+bool HashTable::searchLL(int key){
+    LLnode* element = search(key);
+    // if the element itself is there
+    if (element != NULL)
+    {
+        return true;
+    }
+    return false;
+}
+
