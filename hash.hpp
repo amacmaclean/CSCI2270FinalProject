@@ -37,7 +37,7 @@ public:
     void printTable();
     int linearMod(int value);
     int quadMod(int value);
-    void searchLL(int key);
+    bool searchLL(int key);
     void insertLL(int key);
     void deleteLL(int key);
     BSTnode();

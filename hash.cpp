@@ -58,27 +58,16 @@ void HashTable::printTable()
     }
  }
 
-void HashTable::searchLL(int key){
-    //first we find where index is in the list
-    
-   
-    // we use that index in order to initialize our element
-    LLnode* element = table[hashIndex];
+bool HashTable::searchLL(int key){
+
+    LLnode* element = search(key);
     
     // if the element itself is there
     if (element != NULL)
     {
-        //to keep recursive properties
-        while (element != NULL)
-        {
-            if (element->key == key)// if the element is not found {
-                found = true;
-            cout << "Element has been found at " << key << ":" << element << endl;
-        }
-        if (!found) {
-            cout << "Element not found" << endl;
-        }
+        return true;
     }
+    return false;
 }
 
 void HashTable::insertLL(int key){
