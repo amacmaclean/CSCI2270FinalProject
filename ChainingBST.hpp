@@ -8,24 +8,23 @@
 #include <iostream>
 
 struct BSTnode {
-	int num;
-	int count;
-	BSTnode* left;
-	BSTnode* right;
+	int key;
+	int count = 0;
+	BSTnode* left = NULL;
+	BSTnode* right = NULL;
 };
 
 class HashTable {
 private:
 	int TABLE_SIZE;
-	BSTnode* root; //pointer to root of BST
 	int performHash1(int key);
 	int performHash2(int key);
-	BSTnode* searchTable(int key); //returns BST node if found
 	BSTnode* table[]; //double pointer
+	BSTnode* insertIntoBST(BSTnode* currNode, int index);
 public:
 	HashTable(int size);
-	void hash(int key);
-	bool inTable(int key); //return whether it is in table
+	BSTnode
+	void hash(int key); //insert BST function
 	void deleteNode(int key);
 };
 

@@ -12,9 +12,8 @@
 using namespace std;
 
 HashTable::HashTable(int size) {
-	root = NULL;
 	TABLE_SIZE = size;
-	table = new BSTnode*[TABLE_SIZE]; //int array hash table
+	table = new BSTnode*[TABLE_SIZE]; // root BSTnode* array hash table, 
 	for (int i = 0; i < TABLE_SIZE; i++) //set all elements to -1
 		table[i] = NULL;
 }
@@ -30,25 +29,35 @@ int HashTable::performHash2(int key) {
 }
 
 //Hash Function 1 (can change to 2)
-void hash(int key) {
+void HashTable::hash(int key) {
 	int index = performHash1(key);
-	if (table[index] >= 0) //if there is already a value in table[index]
-		index = linearProbe(index);
-	if (index >= 0) //if we find an empty index
-		table[index] = key;
-	else
-		cout << "table Full" << endl;
+	
+	table[index] = insertIntoBST(table[index], key); //table[index] = root	
 }
 
-BSTnode* searchTable(int key); //returns BST node if found
+//Recursive function
+BSTnode* insertIntoBST(BSTnode* currNode, int key) {
+	if (currNode == NULL) {
+		BSTnode* newNode = new BST;
+		newNode->key = key;
+		return newNode;
+	}
+	else if (key < currNode->key) { //if lower than current, go left
+		currNode->left = insertIntoBST(currNode->left, key);
+	}
+	else if (key > currNode->key) { //if greater than current, go right
+		currNode->right = insertIntoBST(currNode->right, key);
+	}
+	else { //if key == currNode->key
+		currNode->count++; //rare, will this even happen?
+	}
 
-bool inTable(int key); //return whether it is in table
-void deleteNode(int key);
+}
 
-//void HashTable::insertBST(int num){
-    //int hashIndex = hashFunction(num);
-    //BSTnode* element = table[hashIndex];
 
+
+
+void HashTable::deleteNode(int key);
 
 
 
