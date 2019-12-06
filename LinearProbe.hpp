@@ -1,13 +1,26 @@
 //
 //  LinearProbe.hpp
 //  
-//
-//  Created by Andrew Maclean on 12/2/19.
-//
 
-#ifndef LinearProbe_hpp
-#define LinearProbe_hpp
+
 
 #include <stdio.h>
+#include <iostream>
+#include <vector>
+#include <ctime>
 
-#endif /* LinearProbe_hpp */
+class HashTable {
+private:
+	int TABLE_SIZE;
+	int* table;
+	int performHash1(int key);
+	int performHash2(int key);
+public:
+	HashTable();
+	int hash(int key);
+	void printTable();
+	int linearProbe(int key);
+};
+
+
+
