@@ -26,6 +26,7 @@ public:
     node* searchItem(int key);
     int linearMod(int value);
     int quadMod(int value);
+    void searchLL(int key);
 };
 
 #endif
