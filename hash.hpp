@@ -8,7 +8,7 @@ using namespace std;
 
 struct LLnode
 {
-    int key;
+    int key, value;
     LLnode* next;
     LLnode* prev;
 };

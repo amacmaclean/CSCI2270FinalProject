@@ -96,6 +96,12 @@ void HashTable::insertLL(int key){
 }
 
 void HashTable::deleteLL(int key){
+    int hashIndex = hashFunction(key);
+    LLnode* element = table[hashIndex];
+    
+    while (element != NULL) {
+        <#statements#>
+    }
     
 }
 
