@@ -85,6 +85,8 @@ void HashTable::insertLL(int key){
     //if there is nothing in the linked list
     if (element == NULL) {
         element = createLLnode(key, NULL);
+        element->next = NULL;
+        element->prev = NULL;
     }
     //if there is something in the list then we add to the  next index.
     else{
