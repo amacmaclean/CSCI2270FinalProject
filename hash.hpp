@@ -37,12 +37,9 @@ public:
     void searchLL(int key);
     void insertLL(int key);
     void deleteLL(int key);
-<<<<<<< Updated upstream
-=======
     void insertBST(int key);
     void insertBST(int key);
     void deleteBST(int key);
->>>>>>> Stashed changes
 };
 
 #endif
