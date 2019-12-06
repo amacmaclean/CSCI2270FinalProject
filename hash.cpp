@@ -1,7 +1,8 @@
 
 #include<iostream>
 #include "hash.hpp"
-
+#include<math.h>
+#include<stdio.h>
 
 using namespace std;
 
@@ -36,13 +37,15 @@ node* HashTable::searchItem(int key)
 
     
     
-    for (int i = 0; i < tableSize; i++) {
+    /*for (int i = 0; i < tableSize; i++) {
         if (table[key] == index) {
             cout << "Found" << endl;
             return NULL;
         }
     }
+     */
     cout << "Not Found" << endl;
+    return NULL;
 }
 
 
@@ -58,14 +61,12 @@ bool HashTable::insertItem(int key)
         if (table[index]==NULL) {
             table[index] = nw;
         }
-        else
-            break;
      }
     else{
         cout<<"duplicate entry: "<<key<<endl;
         return false;
     }
-
+    return 0;
 }
 
 
@@ -73,9 +74,24 @@ void HashTable::printTable()
 {
     for (int i = 0; i < tableSize; i++) {
         cout << i <<"|| ";
-
-        
-        
     }
-
  }
+
+int HashTable::linearMod(int value)
+{
+    int hashvalue;
+    hashvalue = (value%tableSize);
+    return hashvalue;
+
+}
+
+int HashTable::quadMod(int value)
+{
+    int hashvalue;
+    int temp = floor(value/tableSize);
+    hashvalue = (temp%tableSize);
+    return hashvalue;
+    
+}
+
+

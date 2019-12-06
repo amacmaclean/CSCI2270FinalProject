@@ -14,7 +14,7 @@ struct node
 
 class HashTable
 {
-    int tableSize;
+    int tableSize = 10009;
     node* *table;
     node* createNode(int key, node* next);
 public:
@@ -23,6 +23,8 @@ public:
     unsigned int hashFunction(int key);
     void printTable();
     node* searchItem(int key);
+    int linearMod(int value);
+    int quadMod(int value);
 };
 
 #endif
