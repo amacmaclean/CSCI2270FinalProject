@@ -24,9 +24,20 @@ HashTable::HashTable(int bsize)
 }
 
 
-unsigned int HashTable::hashFunction(int key)
+//Linear Mod
+int HashTable::hashFunction(int key)
 {
     return (key % TABLE_SIZE);
+}
+
+//Quad Mod
+int HashTable::hashFunction2(int value)
+{
+    int hashvalue;
+    int temp = floor(value/TABLE_SIZE);
+    hashvalue = (temp%TABLE_SIZE);
+    return hashvalue;
+    
 }
 
 void HashTable::printTable()
@@ -36,25 +47,6 @@ void HashTable::printTable()
         //TODO if needed
     }
  }
-
-//Hash function 1
-int HashTable::linearMod(int value)
-{
-    int hashvalue;
-    hashvalue = (value%TABLE_SIZE);
-    return hashvalue;
-
-}
-
-//Hash function 2
-int HashTable::quadMod(int value)
-{
-    int hashvalue;
-    int temp = floor(value/TABLE_SIZE);
-    hashvalue = (temp%TABLE_SIZE);
-    return hashvalue;
-    
-}
 
 void HashTable::searchLL(int key){
     //first we find where index is in the list

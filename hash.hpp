@@ -25,6 +25,7 @@ class HashTable
 {
 private:
     int TABLE_SIZE = 10009;
+    int hashTable[100];
     LLnode* *table;
     LLnode* createNode(int key, node* next);
     LLnode* head; //pointer to head of linked list
