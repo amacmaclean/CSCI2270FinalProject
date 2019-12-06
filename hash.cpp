@@ -110,11 +110,14 @@ HashTable::BSTnode() {
     head = NULL;
 }
 
-void HashTable::insertBST(int key){
-    int hashIndex = hashFunction(key);
-    node* element = table[hashIndex];
+void HashTable::insertBST(int num){
+    int hashIndex = hashFunction(num);
+    LLnode* element = table[hashIndex];
 
-    
+    if (head == NULL) {
+        head = new BSTnode;
+        head->value = num;
+    }
 }
     
 

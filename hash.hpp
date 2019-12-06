@@ -8,14 +8,15 @@ using namespace std;
 
 struct LLnode
 {
-    int key, value;
+    int key; //index
+    int value; //number
     LLnode* next;
     LLnode* prev;
 };
 
 struct BSTnode
 {
-    int key;
+    int value; //number
     BSTnode* left;
     BSTnode* right;
 };
