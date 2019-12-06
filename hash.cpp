@@ -119,6 +119,14 @@ void HashTable::searchLL(int key){
         }
     }
 }
+
+void HashTable::insertLL(int key){
+    
+}
+
+void HashTable::deleteLL(int key){
+    
+}
     
 
 
