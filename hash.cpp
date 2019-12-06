@@ -50,6 +50,13 @@ void HashTable::printTable()
 
 void HashTable::searchLL(int key){
     //first we find where index is in the list
+    
+    for (int i = 0; i < HashTable.size(); i++) {
+        if (HashTable[i] == key) {
+            
+        }
+    }
+    
     int hashIndex = hashFunction(key);
     bool found = false;
     // we use that index in order to initialize our element
