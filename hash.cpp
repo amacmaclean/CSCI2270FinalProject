@@ -56,7 +56,7 @@ void HashTable::printTable()
         cout << i <<"|| ";
         //TODO if needed
     }
- }
+}
 
 bool HashTable::searchLL(int key){
 
@@ -109,6 +109,17 @@ void HashTable::insertBST(int num){
     if (head == NULL) {
         head = new BSTnode;
         head->value = num;
+        //not nearly done
+    }
+}
+
+int HashTable::linearProbing(int key) {
+    for (int i = key+1; i != key; i++) { //iterate starting at key + 1
+        if (i >= 100) { //wrap around at end of hash table
+            i = -1; //will become i = 0 after i++
+            continue; //no index 100, continue in the for loop
+        }
+        if (table[i] )
     }
 }
     
