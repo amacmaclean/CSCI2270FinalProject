@@ -37,6 +37,7 @@ void HashTable::printTable()
     }
  }
 
+//Hash function 1
 int HashTable::linearMod(int value)
 {
     int hashvalue;
@@ -45,6 +46,7 @@ int HashTable::linearMod(int value)
 
 }
 
+//Hash function 2
 int HashTable::quadMod(int value)
 {
     int hashvalue;
@@ -94,6 +96,12 @@ void HashTable::insertLL(int key){
 }
 
 void HashTable::deleteLL(int key){
+    
+}
+
+void HashTable::insertBST(int key){
+    int hashIndex = hashFunction(key);
+    node* element = table[hashIndex];
     
 }
     
