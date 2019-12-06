@@ -29,50 +29,6 @@ unsigned int HashTable::hashFunction(int key)
     return (key % TABLE_SIZE);
 }
 
-
-//function to search
-node* HashTable::searchItem(int key)
-{
-    //Compute the index by using the hash function
-    int index = hashFunction(key);
-
-    
-    
-    /*for (int i = 0; i < TABLE_SIZE; i++) {
-        if (table[key] == index) {
-            cout << "Found" << endl;
-            return NULL;
-        }
-    }
-     */
-    cout << "Not Found" << endl;
-    return NULL;
-}
-
-
-//function to insert
-bool HashTable::insertItem(int key)
-{
-    if(!searchItem(key))
-    {
-        
-        int index = hashFunction(key);
-       node* nw= createNode(key,nullptr);
-        
-        if (table[index]==NULL) {
-            table[index] = nw;
-        }
-     }
-    else{
-        cout<<"duplicate entry: "<<key<<endl;
-        return false;
-    }
-    return 0;
-}
-
-
-
-
 void HashTable::printTable()
 {
     for (int i = 0; i < TABLE_SIZE; i++) {
