@@ -16,8 +16,8 @@ node* HashTable::createNode(int key, node* next)
 
 HashTable::HashTable(int bsize)
 {
-    this->tableSize= bsize;
-    table = new node*[tableSize];
+    this->TABLE_SIZE= bsize;
+    table = new node*[TABLE_SIZE];
     for(int i=0;i<bsize;i++)
         table[i] = nullptr;
 }
@@ -25,7 +25,7 @@ HashTable::HashTable(int bsize)
 
 unsigned int HashTable::hashFunction(int key)
 {
-    return (key % tableSize);
+    return (key % TABLE_SIZE);
 }
 
 
@@ -37,7 +37,7 @@ node* HashTable::searchItem(int key)
 
     
     
-    /*for (int i = 0; i < tableSize; i++) {
+    /*for (int i = 0; i < TABLE_SIZE; i++) {
         if (table[key] == index) {
             cout << "Found" << endl;
             return NULL;
@@ -70,9 +70,11 @@ bool HashTable::insertItem(int key)
 }
 
 
+
+
 void HashTable::printTable()
 {
-    for (int i = 0; i < tableSize; i++) {
+    for (int i = 0; i < TABLE_SIZE; i++) {
         cout << i <<"|| ";
     }
  }
@@ -80,7 +82,7 @@ void HashTable::printTable()
 int HashTable::linearMod(int value)
 {
     int hashvalue;
-    hashvalue = (value%tableSize);
+    hashvalue = (value%TABLE_SIZE);
     return hashvalue;
 
 }
@@ -88,8 +90,8 @@ int HashTable::linearMod(int value)
 int HashTable::quadMod(int value)
 {
     int hashvalue;
-    int temp = floor(value/tableSize);
-    hashvalue = (temp%tableSize);
+    int temp = floor(value/TABLE_SIZE);
+    hashvalue = (temp%TABLE_SIZE);
     return hashvalue;
     
 }
