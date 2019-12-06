@@ -6,15 +6,23 @@
 
 using namespace std;
 
-struct node
+struct LLnode
 {
     int key;
-    struct node* next;
-    struct node* prev;
+    LLnode* next;
+    LLnode* prev;
+};
+
+struct BSTnode
+{
+    int key;
+    BSTnode* left;
+    BSTnode* right;
 };
 
 class HashTable
 {
+private:
     int TABLE_SIZE = 10009;
     node* *table;
     node* createNode(int key, node* next);
@@ -29,6 +37,12 @@ public:
     void searchLL(int key);
     void insertLL(int key);
     void deleteLL(int key);
+<<<<<<< Updated upstream
+=======
+    void insertBST(int key);
+    void insertBST(int key);
+    void deleteBST(int key);
+>>>>>>> Stashed changes
 };
 
 #endif
