@@ -121,7 +121,19 @@ void HashTable::searchLL(int key){
 }
 
 void HashTable::insertLL(int key){
-    
+    int hashIndex = hashFunction(key);
+    node* element = table[hashIndex];
+    //if there is nothing in the linked list
+    if (element == NULL) {
+        element = createNode(key, NULL);
+    }
+    //if there is something in the list then we add to the  next index.
+    else{
+        while (element != NULL) {
+            element = element->next;
+            element= createNode(key, NULL);
+        }
+    }
 }
 
 void HashTable::deleteLL(int key){
