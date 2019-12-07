@@ -36,9 +36,9 @@ void HashTable::hash(int key) {
 }
 
 //Recursive function
-BSTnode* insertIntoBST(BSTnode* currNode, int key) {
+BSTnode* HashTable::insertIntoBST(BSTnode* currNode, int key) {
 	if (currNode == NULL) {
-		BSTnode* newNode = new BST;
+		BSTnode* newNode = new BSTnode;
 		newNode->key = key;
 		return newNode;
 	}
@@ -49,15 +49,18 @@ BSTnode* insertIntoBST(BSTnode* currNode, int key) {
 		currNode->right = insertIntoBST(currNode->right, key);
 	}
 	else { //if key == currNode->key
-		currNode->count++; //rare, will this even happen?
+		cout << "Duplicate Value -- Please insert different number" << endl;
+		return NULL;
 	}
-
 }
 
 
 
 
-void HashTable::deleteNode(int key);
+
+void HashTable::deleteNode(int key) {
+
+}
 
 
 

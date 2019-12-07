@@ -30,7 +30,7 @@ int HashTable::hashFunction(int key)
 }
 //search function
 LLnode* HashTable::search(int key){
-     int hashIndex = hashFunction(key);
+    int hashIndex = hashFunction(key);
     LLnode* element = table[hashIndex];
     while(element != NULL && element->key != key) {
         element = element->next;

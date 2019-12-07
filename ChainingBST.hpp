@@ -9,7 +9,6 @@
 
 struct BSTnode {
 	int key;
-	int count = 0;
 	BSTnode* left = NULL;
 	BSTnode* right = NULL;
 };
@@ -19,13 +18,13 @@ private:
 	int TABLE_SIZE;
 	int performHash1(int key);
 	int performHash2(int key);
-	BSTnode* table[]; //double pointer
-	BSTnode* insertIntoBST(BSTnode* currNode, int index);
+	BSTnode** table; //double pointer because array
+	BSTnode* insertIntoBST(BSTnode* currNode, int key);
 public:
 	HashTable(int size);
-	BSTnode
 	void hash(int key); //insert BST function
 	void deleteNode(int key);
+	bool inTable(int key); //Lookup
 };
 
 
