@@ -54,7 +54,7 @@ void HashTable::insertLL(int key){
             node->next = table[hashIndex];
             table[hashIndex] = node;
     }
-    else
+    else if(found == true)
         search(key)->repeatValue++;
 }
 //delete function
