@@ -17,6 +17,7 @@ LLnode* HashTable::createLLnode(int key)
 //constructor
 HashTable::HashTable()
 {
+    int collision = 0;
     valueArray = new int[100]; //100 random values inputed from csv
     table = new LLnode*[TABLE_SIZE];
     for(int i=0; i<TABLE_SIZE; i++) {
@@ -45,7 +46,16 @@ void HashTable::insertLL(int key){
         LLnode* node = createLLnode(key);
         node->prev = NULL;
         int hashIndex = hashFunction(key);
+        if (table[hashIndex] == NULL) {
+            table[hashIndex] = node;
+        }
+        else
+            collision++;
+            node->next = table[hashIndex];
+            table[hashIndex] = node;
     }
+     if(found == true)
+        search(key)->repeatValue++;
 }
 //delete function
 void HashTable::deleteLL(int key){
