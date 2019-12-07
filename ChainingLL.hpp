@@ -22,6 +22,7 @@ private:
     LLnode* createNode(int key);
     LLnode* head; //pointer to head of linked list
     int hashFunction(int key)
+    int hashFunction2(int key)
 public:
     
     HashTable();
@@ -31,6 +32,7 @@ public:
     void deleteLL(int key);
     LLnode* search(int key);
     LLnode* createLLnode(int key);
+    
 };
 
 

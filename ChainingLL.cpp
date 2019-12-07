@@ -24,10 +24,16 @@ HashTable::HashTable()
         table[i] = NULL;
     }
 }
-//hash fucntion
+//hash function
 int HashTable::hashFunction(int key)
 {
     return (key % TABLE_SIZE);
+}
+int HashTable::hashFunction2(int key){
+    int hashvalue;
+    int temp = floor(value/TABLE_SIZE);
+    hashvalue = (temp%TABLE_SIZE);
+    return hashvalue;
 }
 //search function
 LLnode* HashTable::search(int key){
@@ -61,9 +67,20 @@ void HashTable::insertLL(int key){
 void HashTable::deleteLL(int key){
     int hashIndex = hashFunction(key);
     LLnode* element = table[hashIndex];
-    
-    while (element != NULL) {
-        <#statements#>
+    LLnode* itemToDelete = new LLnode;
+    if (element->key == NULL) {
+        
+        table[hashIndex]= element->nextl
+        itemToDelete = element;
+        delete itemToDelete;
+    }
+    else if(element->key != NULL){
+        while (element->next->key != NULL) {
+            element = element->next;
+        }
+        itemToDelete = element->next;
+        element->next = itemToDelete->next;
+        delete itemToDelete;
     }
 }
 //traverse function
