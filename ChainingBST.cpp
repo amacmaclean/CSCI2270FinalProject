@@ -54,7 +54,10 @@ BSTnode* HashTable::insertIntoBST(BSTnode* currNode, int key) {
 	}
 }
 
+//Lookup function
+bool inTable(int key) {
 
+}
 
 
 
