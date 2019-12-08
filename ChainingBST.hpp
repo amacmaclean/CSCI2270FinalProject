@@ -20,10 +20,13 @@ private:
 	int performHash2(int key);
 	BSTnode** table; //double pointer because array
 	BSTnode* insertIntoBST(BSTnode* currNode, int key);
+	BSTnode* lookupNode(BSTnode* currNode, int key);
+	BSTnode* deleteNode(BSTnode* currNode, int key);
+	BSTnode* getMinBSTNode(BSTnode* currNode);
 public:
 	HashTable(int size);
 	void hash(int key); //insert BST function
-	void deleteNode(int key);
+	void deleteKey(int key);
 	bool inTable(int key); //Lookup
 };
 

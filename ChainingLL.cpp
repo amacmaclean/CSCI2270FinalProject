@@ -47,7 +47,7 @@ LLnode* HashTable::search(int key){
 }
 //insert function
 void HashTable::insertLL(int key){
-    bool found = searchLL(key);
+    int hashIndex = hashFunction(key);
     if (found == false) {
         LLnode* node = createLLnode(key);
         node->prev = NULL;

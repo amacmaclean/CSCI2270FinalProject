@@ -17,9 +17,11 @@ private:
 	int performHash2(int key);
 public:
 	HashTable(int size);
-	int hash(int key);
+	void hash(int key);
 	void printTable();
 	int linearProbe(int key);
+	bool inTable(int key);
+	void deleteKey(int key);
 };
 
 

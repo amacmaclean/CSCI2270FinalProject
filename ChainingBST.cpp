@@ -35,7 +35,7 @@ void HashTable::hash(int key) {
 	table[index] = insertIntoBST(table[index], key); //table[index] = root	
 }
 
-//Recursive function
+//Recursive insert function
 BSTnode* HashTable::insertIntoBST(BSTnode* currNode, int key) {
 	if (currNode == NULL) {
 		BSTnode* newNode = new BSTnode;
@@ -52,17 +52,87 @@ BSTnode* HashTable::insertIntoBST(BSTnode* currNode, int key) {
 		cout << "Duplicate Value -- Please insert different number" << endl;
 		return NULL;
 	}
+	return currNode;
 }
 
 //Lookup function
-bool inTable(int key) {
+bool HashTable::inTable(int key) {
+	int index = performHash1(key);
 
+	if (lookupNode(table[index], key)) //if found
+		return true;
+	else //if NULL
+		return false;
+}
+
+//Recursive insert function
+BSTnode* HashTable::lookupNode(BSTnode* currNode, int key) {
+	if (currNode == NULL) {
+		return NULL; //key not in BST
+	}
+	else if (key == currNode->key) { //key found
+		return currNode;
+	}
+	else if (key < currNode->key) { //if lower than current, go left
+		currNode->left = lookupNode(currNode->left, key);
+	}
+	else { //if greater than current, go right
+		currNode->right = lookupNode(currNode->right, key);
+	}
+	return currNode;
 }
 
 
+void HashTable::deleteKey(int key) {
+	int index = performHash1(key);
+	deleteNode(table[index], key);
+}
 
-void HashTable::deleteNode(int key) {
+BSTnode* HashTable::deleteNode(BSTnode* currNode, int key) {
+  if(currNode == NULL)  return NULL;
+  else if(key < currNode->key) {
+    currNode->left = deleteNode(currNode->left, key);
+  }
+  else if(key > currNode->key) {
+    currNode->right = deleteNode(currNode->right, key);
+  }
+  // We found the node with the key
+  else {
+    //TODO Case : No child
+    if(currNode->left == NULL && currNode->right == NULL) {
+        delete currNode;
+        currNode = NULL; //will return NULL
+    }
+    //TODO Case : Only right child
+    else if(currNode->left == NULL) {
+        BSTnode* toReturn = currNode->right;
+        delete currNode;
+        return toReturn;
 
+    }
+    //TODO Case : Only left child
+    else if(currNode->right == NULL) {
+        BSTnode* toReturn = currNode->left;
+        delete currNode;
+        return toReturn;
+    }
+    //TODO Case: Both left and right child
+    else {
+      ///Replace with Minimum from right subtree
+      BSTnode* rightMin = getMinBSTNode(currNode->right);
+      delete currNode;
+      return rightMin;
+    }
+  }
+  return currNode;
+}
+
+BSTnode* HashTable::getMinBSTNode(BSTnode* currNode){
+
+    if(currNode->left == NULL){
+      return currNode;
+    }
+    return getMinBSTNode(currNode->left);
 }
 
 
