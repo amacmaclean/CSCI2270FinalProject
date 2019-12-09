@@ -37,16 +37,19 @@ void HashTable::hash(int key, bool func1) {
         LLnode* nw = new LLnode;
         nw->key = key;
         nw->next = NULL;
+        table[index] = nw;
         return; 
     }
     LLnode* crawler = table[index]; //table[index] = head
-    do {
+    while(crawler->next != NULL) {
         if (crawler->key == key) { //if already there
             cout << "Duplicate Value -- Please insert different number" << endl;
             return;
         }
+        
         crawler = crawler->next; //iterate
-    } while (crawler != NULL); //until end of LL
+    }
+
     //Create node
         crawler->key = key;
         crawler->next = NULL;
@@ -81,7 +84,7 @@ void HashTable::deleteNode(int key, bool func1){
             delete crawler;
             return;
         }
-
+    
         //iterate
         while (crawler->next != NULL) {
             //if delete one ahead
@@ -96,7 +99,7 @@ void HashTable::deleteNode(int key, bool func1){
     }
     
     //if no node with countryName (or empty)
-    cout << "Delete failed. Value not found." << endl;
+    //cout << "Delete failed. Value not found." << endl;
 }
 
 

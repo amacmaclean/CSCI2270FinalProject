@@ -7,6 +7,7 @@
 #include <iostream>
 #include <ctime>
 #include <math.h>
+#include <fstream>
 
 using namespace std;
 
@@ -105,13 +106,67 @@ void HashTable::printTable() {
 	cout << endl;
 }
 
-int main()
-{
+
+int main(int argc, char const *argv[]) {
+    
+    //input file declarations OUTSIDE else loop to avoid error
+    string dataFile = "";
+    string LFinput = "";
+    string functionInput = "";
+
+
+    //if incorrect number of command line args
+    if (argc != 4) {
+        cout << "Usage: FinalProject <<function -- 1 or 2>> <<loadFactor -- 0.1 to 1>> <<dataSet.csv>" << endl;
+        return 0;
+    }
+    
+    //input initializations from command line
+    functionInput = argv[1];
+    LFinput = argv[2];
+    dataFile = argv[3];
+
+    float loadFactor = stof(LFinput); //string to float
+    int hashFunction = stoi(functionInput); //string to int
+    bool func1;
+    if (hashFunction == 1)
+        func1 = true;
+    else if (hashFunction == 2)
+        func1 = false;
+    else {
+        cout << "Hash function must be 1 or 2" << endl;
+        return 0;
+    }
+
+
+    int loadNumbers = 10009 * loadFactor;
+    int dataSet[loadNumbers]; //array to hold dataSet
+
+    HashTable hash_table; //declare HashTable object
+
+    string numberInputs = "";
+    int i = 0;
+
+    ifstream filestream;
+    filestream.open(dataFile);
+
+    //read data from CSV
+    while (getline(filestream, numberInputs, ',') && i < loadNumbers) {
+        //insert data until reaching load factor
+        dataSet[i] = stoi(numberInputs);
+        hash_table.hash(dataSet[i], func1); //insert into Hash Table
+        i++;
+    }
+    filestream.close();
+
+
+    //REPEAT BELOW CODE 3 TIMES FOR DELETE, INSERT, and LOOKUP
+
+    //Delete:
 
     // Time Taken in milliseconds
-    
     int sampleSize = 100;
-    int durartion[100];
+    int timePerDelete[100];
     int totalTimeTaken = 0;
     int averageTime = 0;
     double deviationSum = 0;
@@ -123,10 +178,11 @@ int main()
         clock_t start;
         start = clock();
         
-        //insert add/delete/search function call here******************************************
-        
-        duration[i] = (clock() - start / (double)(CLOCKS_PER_SEC ));
-        totalTimeTaken = totalTimeTaken + duration[i];
+        //DELETE FUNCTION CALL
+        hash_table.deleteKey(dataSet[i], func1);
+
+        timePerDelete[i] = (clock() - start / (double)(CLOCKS_PER_SEC ));
+        totalTimeTaken = totalTimeTaken + timePerDelete[i];
         
     }
     
@@ -135,18 +191,98 @@ int main()
     
     // Make-shift equation for summation numerator of Standard Deviation
     for(i = 0; i < sampleSize; i++) {
-        deviationSum = deviationSum + pow((duration[i] - averageTime), 2);
+        deviationSum = deviationSum + pow((timePerDelete[i] - averageTime), 2);
     }
     
     // Standard Deviation equation with proper computed variables
-    standDev = sqrt(deviationSum / (sampleSize - 1));
+    standardDeviation = sqrt(deviationSum / (sampleSize - 1));
     
-    cout << "Average Time of function:  " << averageTime << endl;
-    cout << "Standard Deviation of funciton:  " << standardDeviation << endl;
+    cout << "Average Time of Delete function:  " << averageTime << endl;
+    cout << "Standard Deviation of Delete funciton:  " << standardDeviation << endl;
+
+    //Insert:
+
+    //Reset values
+    sampleSize = 100;
+    int timePerInsert[100];
+    totalTimeTaken = 0;
+    averageTime = 0;
+    deviationSum = 0;
+    standardDeviation = 0;
     
-	return 0;
+    //Collecting data for function times
+    for (int i = 0 ; i < sampleSize; i++)
+    {
+        clock_t start;
+        start = clock();
+        
+        //INSERT FUNCTION CALL
+        hash_table.hash(dataSet[i], func1);
+
+        timePerInsert[i] = (clock() - start / (double)(CLOCKS_PER_SEC ));
+        totalTimeTaken = totalTimeTaken + timePerInsert[i];
+        
+    }
+    
+    //Finding average time
+    averageTime = totalTimeTaken / sampleSize;
+    
+    // Make-shift equation for summation numerator of Standard Deviation
+    for(i = 0; i < sampleSize; i++) {
+        deviationSum = deviationSum + pow((timePerInsert[i] - averageTime), 2);
+    }
+    
+    // Standard Deviation equation with proper computed variables
+    standardDeviation = sqrt(deviationSum / (sampleSize - 1));
+    
+    cout << "Average Time of Insert function:  " << averageTime << endl;
+    cout << "Standard Deviation of Insert funciton:  " << standardDeviation << endl;
+    
+
+    //Lookup:
+
+    //Reset values
+    sampleSize = 100;
+    int timePerLookup[100];
+    totalTimeTaken = 0;
+    averageTime = 0;
+    deviationSum = 0;
+    standardDeviation = 0;
+    
+    //Collecting data for function times
+    for (int i = 0 ; i < sampleSize; i++)
+    {
+        clock_t start;
+        start = clock();
+        
+        //LOOKUP FUNCTION CALL
+        hash_table.inTable(dataSet[i], func1);
+
+        timePerLookup[i] = (clock() - start / (double)(CLOCKS_PER_SEC ));
+        totalTimeTaken = totalTimeTaken + timePerLookup[i];
+        
+    }
+    
+    //Finding average time
+    averageTime = totalTimeTaken / sampleSize;
+    
+    // Make-shift equation for summation numerator of Standard Deviation
+    for(i = 0; i < sampleSize; i++) {
+        deviationSum = deviationSum + pow((timePerLookup[i] - averageTime), 2);
+    }
+    
+    // Standard Deviation equation with proper computed variables
+    standardDeviation = sqrt(deviationSum / (sampleSize - 1));
+    
+    cout << "Average Time of Lookup function:  " << averageTime << endl;
+    cout << "Standard Deviation of Lookup funciton:  " << standardDeviation << endl;
+
+    return 0;
 }
 
+
+
+    
 
 
 

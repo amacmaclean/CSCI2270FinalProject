@@ -1,7 +1,7 @@
 //
 //  LinearProbe.hpp
 //  
-
+#include <fstream>
 #include <stdio.h>
 #include <iostream>
 #include <ctime>

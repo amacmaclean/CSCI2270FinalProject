@@ -6,6 +6,7 @@
 #include<stdio.h>
 #include<ctime>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -25,7 +26,7 @@ private:
 	BSTnode* deleteNode(BSTnode* currNode, int key);
 	BSTnode* getMinBSTNode(BSTnode* currNode);
 public:
-	HashTable(int size);
+	HashTable();
 	void hash(int key, bool func1); //insert BST function
 	void deleteKey(int key, bool func1);
 	bool inTable(int key, bool func1); //Lookup

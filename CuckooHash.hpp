@@ -6,6 +6,7 @@
 #include <iostream>
 #include <ctime>
 #include <math.h>
+#include <fstream>
 
 using namespace std;
 
