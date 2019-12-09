@@ -18,7 +18,9 @@ private:
 public:
 	HashTable();
 	void hash(int key);
-	bool inTable(int key);
+	void insertCuckoo(int key, int count, bool tabl1);
+	void rehash();
+	bool inTables(int key);
 	void deleteKey(int key);
 };
 
