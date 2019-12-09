@@ -12,6 +12,7 @@ using namespace std;
 
 //Constructor
 HashTable::HashTable() {
+	TABLE_SIZE = 10009;
 	table = new int[TABLE_SIZE]; //int array hash table
 	for (int i = 0; i < TABLE_SIZE; i++) //set all elements to -1
 		table[i] = -1;
@@ -28,15 +29,18 @@ int HashTable::performHash(int key, bool func1) {
     }
 }
 
-//Hash Function 1 (can change to 2)
 void HashTable::hash(int key, bool func1) {
-	int index = performHash(key, func1);
-	if (table[index] >= 0) //if there is already a value in table[index]
-		index = linearProbe(index);
-	if (index >= 0) //if we find an empty index
-		table[index] = key; //ADD VALUE TO TABLE HERE!
-	else
-		cout << "table Full" << endl;
+	if(inTable(key, func1))
+		cout << "Duplicate value. Please insert new value" << endl;
+	else {
+		int index = performHash(key, func1);
+		if (table[index] >= 0) //if there is already a value in table[index]
+			index = linearProbe(index);
+		if (index >= 0) //if we find an empty index
+			table[index] = key; //ADD VALUE TO TABLE HERE!
+		else
+			cout << "table Full" << endl;
+	}
 }
 
 int HashTable::linearProbe(int index) {
@@ -56,6 +60,8 @@ bool HashTable::inTable(int key, bool func1) {
 	int index = performHash(key, func1);
 	if (table[index] == key)
 		return true;
+	else if (table[index] == -1)
+		return false;
 	else {
 		for(int i = index+1; i != index; i++) { //search
 			if (i >= TABLE_SIZE) { //wraparound

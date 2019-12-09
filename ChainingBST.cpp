@@ -10,8 +10,8 @@
 
 using namespace std;
 
-HashTable::HashTable(int size) {
-	TABLE_SIZE = size;
+HashTable::HashTable() {
+	TABLE_SIZE = 10009;
 	table = new BSTnode*[TABLE_SIZE]; // root BSTnode* array hash table, 
 	for (int i = 0; i < TABLE_SIZE; i++) //set all elements to -1
 		table[i] = NULL;
@@ -29,7 +29,6 @@ int HashTable::performHash(int key, bool func1) {
     }
 }
 
-//Hash Function 1 (can change to 2)
 void HashTable::hash(int key, bool func1) {
 	int index = performHash(key, func1);
 	

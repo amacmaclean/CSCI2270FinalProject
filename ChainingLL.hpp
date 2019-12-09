@@ -18,7 +18,7 @@ struct LLnode
 class HashTable
 {
 private:
-    int TABLE_SIZE = 10009;
+    int TABLE_SIZE;
     LLnode* *table; //hash Table
     int performHash(int key, bool func1);
 public:

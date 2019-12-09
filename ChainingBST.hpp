@@ -17,7 +17,7 @@ struct BSTnode {
 
 class HashTable {
 private:
-	int TABLE_SIZE = 10009;
+	int TABLE_SIZE;
 	int performHash(int key, bool func1);
 	BSTnode** table; //double pointer because array
 	BSTnode* insertIntoBST(BSTnode* currNode, int key);

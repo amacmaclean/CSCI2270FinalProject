@@ -11,11 +11,11 @@ using namespace std;
 
 class HashTable {
 private:
-	int TABLE_SIZE = 10009;
+	int TABLE_SIZE;
 	int* table;
 	int performHash(int key, bool func1);
 public:
-	HashTable(int size);
+	HashTable();
 	void hash(int key, bool func1);
 	void printTable();
 	int linearProbe(int index);

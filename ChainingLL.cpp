@@ -10,6 +10,7 @@ using namespace std;
 //constructor
 HashTable::HashTable()
 {
+    TABLE_SIZE = 10009;
     table = new LLnode*[TABLE_SIZE];
     for(int i=0; i<TABLE_SIZE; i++) {
         table[i] = NULL;
