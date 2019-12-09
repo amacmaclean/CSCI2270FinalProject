@@ -3,33 +3,34 @@
 //  
 
 #include "LinearProbe.hpp"
+#include <stdio.h>
 #include <iostream>
-#include <vector>
-#include<math.h>
-
+#include <ctime>
+#include <math.h>
 
 using namespace std;
 
 //Constructor
-HashTable::HashTable(int size) {
-	TABLE_SIZE = size; //10009 or 100?
+HashTable::HashTable() {
 	table = new int[TABLE_SIZE]; //int array hash table
 	for (int i = 0; i < TABLE_SIZE; i++) //set all elements to -1
 		table[i] = -1;
 }
 
-int HashTable::performHash1(int key) {
-	return key % TABLE_SIZE;
-}
-
-int HashTable::performHash2(int key) {
-    int floorVal = floor(key/TABLE_SIZE);
-    return (floorVal%TABLE_SIZE);
+int HashTable::performHash(int key, bool func1) {
+    //Hash Function 1
+    if(func1)
+        return key % TABLE_SIZE;
+    //Hash Function 2
+    else { 
+        int floorVal = floor(key/TABLE_SIZE);
+        return (floorVal%TABLE_SIZE);
+    }
 }
 
 //Hash Function 1 (can change to 2)
-void HashTable::hash(int key) {
-	int index = performHash1(key);
+void HashTable::hash(int key, bool func1) {
+	int index = performHash(key, func1);
 	if (table[index] >= 0) //if there is already a value in table[index]
 		index = linearProbe(index);
 	if (index >= 0) //if we find an empty index
@@ -51,8 +52,8 @@ int HashTable::linearProbe(int index) {
 }
 
 //Lookup Function
-bool HashTable::inTable(int key) {
-	int index = performHash1(key);
+bool HashTable::inTable(int key, bool func1) {
+	int index = performHash(key, func1);
 	if (table[index] == key)
 		return true;
 	else {
@@ -70,8 +71,8 @@ bool HashTable::inTable(int key) {
 	}
 }
 
-void HashTable::deleteKey(int key) {
-	int index = performHash1(key);
+void HashTable::deleteKey(int key, bool func1) {
+	int index = performHash(key, func1);
 	if (table[index] == key)
 		table[index] = -1; //DELETE
 	else {

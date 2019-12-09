@@ -7,6 +7,8 @@
 #include<ctime>
 #include <iostream>
 
+using namespace std;
+
 struct BSTnode {
 	int key;
 	BSTnode* left = NULL;
@@ -15,7 +17,7 @@ struct BSTnode {
 
 class HashTable {
 private:
-	int TABLE_SIZE;
+	int TABLE_SIZE = 10009;
 	int performHash(int key, bool func1);
 	BSTnode** table; //double pointer because array
 	BSTnode* insertIntoBST(BSTnode* currNode, int key);

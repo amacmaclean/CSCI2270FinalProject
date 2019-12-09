@@ -8,7 +8,6 @@
 #include<ctime>
 #include <iostream>
 
-
 using namespace std;
 
 HashTable::HashTable(int size) {

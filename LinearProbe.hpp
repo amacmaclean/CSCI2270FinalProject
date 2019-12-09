@@ -2,26 +2,25 @@
 //  LinearProbe.hpp
 //  
 
-
-
 #include <stdio.h>
 #include <iostream>
-#include <vector>
 #include <ctime>
+#include <math.h>
+
+using namespace std;
 
 class HashTable {
 private:
-	int TABLE_SIZE;
+	int TABLE_SIZE = 10009;
 	int* table;
-	int performHash1(int key);
-	int performHash2(int key);
+	int performHash(int key, bool func1);
 public:
 	HashTable(int size);
-	void hash(int key);
+	void hash(int key, bool func1);
 	void printTable();
-	int linearProbe(int key);
-	bool inTable(int key);
-	void deleteKey(int key);
+	int linearProbe(int index);
+	bool inTable(int key, bool func1);
+	void deleteKey(int key, bool func1);
 };
 
 
