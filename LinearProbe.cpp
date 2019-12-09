@@ -99,8 +99,19 @@ void HashTable::printTable() {
 	cout << endl;
 }
 
-int main() {
-    
+int main()
+{
+    getline(cin, input);
+    switch (stoi(input))
+    {
+        case 0:
+        {
+            
+        }
+           
+            
+     
+    }
     
 	return 0;
 }
