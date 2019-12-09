@@ -144,7 +144,7 @@ int main()
             cout << "Average Time of function:  " << averageTime << endl;
             cout << "Standard Deviation of funciton:  " << standardDeviation << endl;
 
-      
+    
     
 	return 0;
 }
