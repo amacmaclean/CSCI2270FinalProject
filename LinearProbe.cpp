@@ -108,43 +108,41 @@ void HashTable::printTable() {
 int main()
 {
 
-            // Time Taken in milliseconds
-            
-            int sampleSize = 100;
-            int durartion[100];
-            int totalTimeTaken = 0;
-            int averageTime = 0;
-            double deviationSum = 0;
-            double standardDeviation = 0;
-            
-            //Collecting data for function times
-            for (int i = 0 ; i < sampleSize; i++)
-            {
-                clock_t start;
-                start = clock();
-                
-                //insert add/delete/search function call here******************************************
-                
-                duration[i] = (clock() - start / (double)(CLOCKS_PER_SEC ));
-                totalTimeTaken = totalTimeTaken + duration[i];
-                
-            }
-            
-            //Finding average time
-            averageTime = totalTimeTaken / sampleSize;
-            
-            // Make-shift equation for summation numerator of Standard Deviation
-            for(i = 0; i < sampleSize; i++) {
-                deviationSum = deviationSum + pow((duration[i] - averageTime), 2);
-            }
-            
-            // Standard Deviation equation with proper computed variables
-            standDev = sqrt(deviationSum / (sampleSize - 1));
-            
-            cout << "Average Time of function:  " << averageTime << endl;
-            cout << "Standard Deviation of funciton:  " << standardDeviation << endl;
-
+    // Time Taken in milliseconds
     
+    int sampleSize = 100;
+    int durartion[100];
+    int totalTimeTaken = 0;
+    int averageTime = 0;
+    double deviationSum = 0;
+    double standardDeviation = 0;
+    
+    //Collecting data for function times
+    for (int i = 0 ; i < sampleSize; i++)
+    {
+        clock_t start;
+        start = clock();
+        
+        //insert add/delete/search function call here******************************************
+        
+        duration[i] = (clock() - start / (double)(CLOCKS_PER_SEC ));
+        totalTimeTaken = totalTimeTaken + duration[i];
+        
+    }
+    
+    //Finding average time
+    averageTime = totalTimeTaken / sampleSize;
+    
+    // Make-shift equation for summation numerator of Standard Deviation
+    for(i = 0; i < sampleSize; i++) {
+        deviationSum = deviationSum + pow((duration[i] - averageTime), 2);
+    }
+    
+    // Standard Deviation equation with proper computed variables
+    standDev = sqrt(deviationSum / (sampleSize - 1));
+    
+    cout << "Average Time of function:  " << averageTime << endl;
+    cout << "Standard Deviation of funciton:  " << standardDeviation << endl;
     
 	return 0;
 }
