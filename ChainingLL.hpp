@@ -1,6 +1,11 @@
+//
+//  ChainingLL.hpp
+//  
 
-
-
+#include<math.h>
+#include<stdio.h>
+#include<ctime>
+#include <iostream>
 
 
 using namespace std;
@@ -8,30 +13,21 @@ using namespace std;
 struct LLnode
 {
     int key; //index
-    int repeatValue; //number
-    LLnode* next;
-    LLnode* prev;
+    LLnode* next; //singly-linked list because not any faster to implement doubly linked list
 };
 
 class HashTable
 {
 private:
     int TABLE_SIZE = 10009;
-    int* valueArray; //from csv
     LLnode* *table; //hash Table
-    LLnode* createNode(int key);
-    LLnode* head; //pointer to head of linked list
-    int hashFunction(int key)
-    int hashFunction2(int key)
+    int performHash(int key, bool func1);
 public:
     
     HashTable();
-    int hashFunction(int key);
-    bool searchLL(int key);
-    void insertLL(int key);
-    void deleteLL(int key);
-    LLnode* search(int key);
-    LLnode* createLLnode(int key);
+    void hash(int key, bool func1);
+    bool inTable(int key, bool func1);
+    void deleteNode(int key, bool func1);
     
 };
 

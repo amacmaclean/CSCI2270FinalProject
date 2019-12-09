@@ -16,8 +16,7 @@ struct BSTnode {
 class HashTable {
 private:
 	int TABLE_SIZE;
-	int performHash1(int key);
-	int performHash2(int key);
+	int performHash(int key, bool func1);
 	BSTnode** table; //double pointer because array
 	BSTnode* insertIntoBST(BSTnode* currNode, int key);
 	BSTnode* lookupNode(BSTnode* currNode, int key);
@@ -25,9 +24,9 @@ private:
 	BSTnode* getMinBSTNode(BSTnode* currNode);
 public:
 	HashTable(int size);
-	void hash(int key); //insert BST function
-	void deleteKey(int key);
-	bool inTable(int key); //Lookup
+	void hash(int key, bool func1); //insert BST function
+	void deleteKey(int key, bool func1);
+	bool inTable(int key, bool func1); //Lookup
 };
 
 

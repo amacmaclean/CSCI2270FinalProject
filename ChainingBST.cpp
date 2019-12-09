@@ -19,18 +19,20 @@ HashTable::HashTable(int size) {
 }
 
 
-int HashTable::performHash1(int key) {
-	return key % TABLE_SIZE;
-}
-
-int HashTable::performHash2(int key) {
-    int floorVal = floor(key/TABLE_SIZE);
-    return (floorVal%TABLE_SIZE);
+int HashTable::performHash(int key, bool func1) {
+    //Hash Function 1
+    if(func1)
+        return key % TABLE_SIZE;
+    //Hash Function 2
+    else { 
+        int floorVal = floor(key/TABLE_SIZE);
+        return (floorVal%TABLE_SIZE);
+    }
 }
 
 //Hash Function 1 (can change to 2)
-void HashTable::hash(int key) {
-	int index = performHash1(key);
+void HashTable::hash(int key, bool func1) {
+	int index = performHash(key, func1);
 	
 	table[index] = insertIntoBST(table[index], key); //table[index] = root	
 }
@@ -56,8 +58,8 @@ BSTnode* HashTable::insertIntoBST(BSTnode* currNode, int key) {
 }
 
 //Lookup function
-bool HashTable::inTable(int key) {
-	int index = performHash1(key);
+bool HashTable::inTable(int key, bool func1) {
+	int index = performHash(key, func1);
 
 	if (lookupNode(table[index], key)) //if found
 		return true;
@@ -65,7 +67,7 @@ bool HashTable::inTable(int key) {
 		return false;
 }
 
-//Recursive insert function
+//Recursive lookup function
 BSTnode* HashTable::lookupNode(BSTnode* currNode, int key) {
 	if (currNode == NULL) {
 		return NULL; //key not in BST
@@ -83,13 +85,17 @@ BSTnode* HashTable::lookupNode(BSTnode* currNode, int key) {
 }
 
 
-void HashTable::deleteKey(int key) {
-	int index = performHash1(key);
-	deleteNode(table[index], key);
+void HashTable::deleteKey(int key, bool func1) {
+	int index = performHash(key, func1);
+	table[index] = deleteNode(table[index], key);
 }
 
 BSTnode* HashTable::deleteNode(BSTnode* currNode, int key) {
-  if(currNode == NULL)  return NULL;
+  if(currNode == NULL)
+  {
+  	cout << "Delete failed. Value not found." << endl;
+  	return NULL;
+  }
   else if(key < currNode->key) {
     currNode->left = deleteNode(currNode->left, key);
   }

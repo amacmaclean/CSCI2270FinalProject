@@ -6,91 +6,99 @@
 #include<ctime>
 
 using namespace std;
-//function to create node
-LLnode* HashTable::createLLnode(int key)
-{
-    LLnode* nw = new LLnode;
-    nw->key = key;
-    nw->next = NULL;
-    return nw;
-}
+
 //constructor
 HashTable::HashTable()
 {
-    int collision = 0;
-    valueArray = new int[100]; //100 random values inputed from csv
     table = new LLnode*[TABLE_SIZE];
     for(int i=0; i<TABLE_SIZE; i++) {
         table[i] = NULL;
     }
 }
-//hash function
-int HashTable::hashFunction(int key)
-{
-    return (key % TABLE_SIZE);
+
+int HashTable::performHash(int key, bool func1) {
+    //Hash Function 1
+    if(func1)
+        return key % TABLE_SIZE;
+    //Hash Function 2
+    else { 
+        int floorVal = floor(key/TABLE_SIZE);
+        return (floorVal%TABLE_SIZE);
+    }
 }
-int HashTable::hashFunction2(int key){
-    int hashvalue;
-    int temp = floor(value/TABLE_SIZE);
-    hashvalue = (temp%TABLE_SIZE);
-    return hashvalue;
+
+//Insert function
+void HashTable::hash(int key, bool func1) {
+    int index = performHash(key, func1);
+    if(table[index] == NULL) {
+        //Create node
+        LLnode* nw = new LLnode;
+        nw->key = key;
+        nw->next = NULL;
+        return; 
+    }
+    LLnode* crawler = table[index]; //table[index] = head
+    do {
+        if (crawler->key == key) { //if already there
+            cout << "Duplicate Value -- Please insert different number" << endl;
+            return;
+        }
+        crawler = crawler->next; //iterate
+    } while (crawler != NULL); //until end of LL
+    //Create node
+        crawler->key = key;
+        crawler->next = NULL;
+        return;
 }
-//search function
-LLnode* HashTable::search(int key){
-    int hashIndex = hashFunction(key);
-    LLnode* element = table[hashIndex];
-    while(element != NULL && element->key != key) {
-        element = element->next;
+
+//Lookup function
+bool HashTable::inTable(int key, bool func1) {
+    int index = performHash(key, func1);
+    if (table[index] == NULL) //if LL empty
+        return false;
+    LLnode* crawler = table[index]; //table[index] = head
+    do {
+        if (crawler->key == key) //if found
+            return true;
+        crawler = crawler->next; //iterate
+    } while (crawler != NULL); //(see above line)
+
+    return false; //if reach end of LL without finding it
+}
+
+//delete function
+void HashTable::deleteNode(int key, bool func1){
+    int index = performHash(key, func1);
+    LLnode* crawler = table[index];
+
+    //if not empty
+    if(crawler != NULL) {
+        //if delete head
+        if (crawler->key == key) {
+            table[index] = crawler->next;
+            delete crawler;
+            return;
+        }
+
+        //iterate
+        while (crawler->next != NULL) {
+            //if delete one ahead
+            if (crawler->next->key == key) {
+                LLnode* temp = crawler->next;
+                crawler->next = temp->next; //pass the arrow past temp
+                delete temp;
+                return;
+            }
+            crawler = crawler->next;
+        }
     }
     
-    return element;
+    //if no node with countryName (or empty)
+    cout << "Delete failed. Value not found." << endl;
 }
-//insert function
-void HashTable::insertLL(int key){
-    int hashIndex = hashFunction(key);
-    if (found == false) {
-        LLnode* node = createLLnode(key);
-        node->prev = NULL;
-        int hashIndex = hashFunction(key);
-        if (table[hashIndex] == NULL) {
-            table[hashIndex] = node;
-        }
-        else
-            collision++;
-            node->next = table[hashIndex];
-            table[hashIndex] = node;
-    }
-     if(found == true)
-        search(key)->repeatValue++;
+
+int main() {
+    return 0;
 }
-//delete function
-void HashTable::deleteLL(int key){
-    int hashIndex = hashFunction(key);
-    LLnode* element = table[hashIndex];
-    LLnode* itemToDelete = new LLnode;
-    if (element->key == NULL) {
-        
-        table[hashIndex]= element->nextl
-        itemToDelete = element;
-        delete itemToDelete;
-    }
-    else if(element->key != NULL){
-        while (element->next->key != NULL) {
-            element = element->next;
-        }
-        itemToDelete = element->next;
-        element->next = itemToDelete->next;
-        delete itemToDelete;
-    }
-}
-//traverse function
-bool HashTable::searchLL(int key){
-    LLnode* element = search(key);
-    // if the element itself is there
-    if (element != NULL)
-    {
-        return true;
-    }
-    return false;
-}
+
 
